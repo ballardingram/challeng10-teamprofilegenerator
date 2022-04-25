@@ -1,2 +1,2 @@
-# challeng10-teamprofilegenerator
+# challenge10-teamprofilegenerator
 Team Profile Generator for Module 10
