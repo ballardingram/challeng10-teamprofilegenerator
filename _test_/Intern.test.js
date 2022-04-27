@@ -1,0 +1,1 @@
+const employee = require("../lib/Intern");
