@@ -1,28 +1,15 @@
-// DOCUMENATION > NODE CLASSES (https://www.geeksforgeeks.org/how-to-use-class-in-node-js/)
-const employee = require("../lib/Employee");
+const Employee = require('../lib/Employee');
+const employee = new Employee('Bob', '123456789', 'bob@email.com');
 
-employee = class {
-    constructor(name=null, id=null, email=null) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        this.role = "Employee";
-    }
+// TEST DETAIL > This will match the 'new Employee' set up to the expected outcomes.
+test('employee objects > test constructor values', () => {
+    expect(employee.name).toBe('Bob');
+    expect(employee.id).toBe('123456789');
+    expect(employee.email).toBe('bob@email.com');
+});
 
-    getName() {
-        return this.name
-    }
+// TEST DETAIL > This section will test the 'getObject' method.
 
-    getId() {
-        return this.id
-    }
-
-    getEmail() {
-        return this.email
-    }
-
-    getRole() {
-        return this.role
-    }
-
-}
+test('name object > test if getName method works', () => {
+    expect(employee.getName()).toBe('Bob');
+});
