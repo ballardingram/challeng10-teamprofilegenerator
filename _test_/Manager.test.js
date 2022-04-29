@@ -9,3 +9,21 @@ test('manager objects > test constructor values', () => {
     expect(manager.email).toBe('bob@email.com');
     expect(manager.officeNumber).toBe('512-512-5112');
 });
+
+// TEST DETAIL > This section will test the 'getObject' method.
+
+test('name object > test if getName method works', () => {
+    expect(manager.getName()).toBe('Bob');
+});
+
+test('id object > test if getId method works', () => {
+    expect(manager.getId()).toBe('123456789');
+});
+
+test('email object > test if getEmail method works', () => {
+    expect(manager.getEmail()).toBe('bob@email.com');
+});
+
+test('officeNumber object > test if getofficeNumber method works', () => {
+    expect(manager.getofficeNumber()).toBe('512-512-5112');
+});
