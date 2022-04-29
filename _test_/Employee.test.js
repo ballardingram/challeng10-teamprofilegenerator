@@ -13,3 +13,11 @@ test('employee objects > test constructor values', () => {
 test('name object > test if getName method works', () => {
     expect(employee.getName()).toBe('Bob');
 });
+
+test('id object > test if getId method works', () => {
+    expect(employee.getId()).toBe('123456789');
+});
+
+test('email object > test if getEmail method works', () => {
+    expect(employee.getEmail()).toBe('bob@email.com');
+});
