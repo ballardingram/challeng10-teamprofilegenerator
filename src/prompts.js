@@ -1,53 +1,44 @@
-// EXTERNAL PACKAGES > INQUIRER INSTALLED; FS AND PATH DO NOT REQUIRE INSTALL
-// DOCUMENTATION > NODE INQUIRER (https://github.com/SBoudrias/Inquirer.js)
+// EXTERNAL PACKAGES > INQUIRER INSTALLED, FS DOES NOT REQUIRE INSTALL
+// DOCUMENTATION > INQUIRER (https://www.npmjs.com/package/inquirer)
+// DOCUMENTATION > FS (https://nodejs.dev/learn/the-nodejs-fs-module)
 const inquirer = require('inquirer');
-const fs = require("fs");
+const fs = require('fs');
 const path = require("path");
-//const index = require('../dist/index');
 
+// ROUTES > CONNECTION TO OTHER JS FILES
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require("./lib/Intern");
+const generateHTML =require("./src/generateHTML.js");
 
-// ROUTES > TO OTHER PAGES REQUIRED FOR PROMPTS TO FUNCTION
-const Engineer = require("../lib/Engineer");
-const Manager = require("../lib/Manager");
-const Intern = require("../lib/Intern");
+// ROUTES > OUTPUT FILE
+const OUTPUT_DIR = path.resolve(__dirname, "dist")
+const outputPath = path.join(OUTPUT_DIR, "team-dashboard.html");
 
-// CREATING AN EMPLOYEES ARRAY
-const employees = [];
+// ARRAY > TEAM MEMBERS
+const teamMembers = [];
 
-// PROMPTS > MANAGER
 const promptManager = () => {
-    return inquirer.prompt ([
+    return inquirer.prompt [
         {
-           type: "input" ,
-           name: "name",
-           message: "What is the employee's name?",
+            type: 'input',
+            name: 'name',
+            message: 'What is the employee name?',
         },
         {
-            type: "input",
-            name: "id",
-            mesage: "What is the employee ID number? MAX 9 Numbers!",
+            type: 'input',
+            name: 'id',
+            message: 'What is the employee ID?',
         },
         {
-            type: "input",
-            name: "email",
-            message: "What is the employee's email address?",
+            type: 'input',
+            name: 'email',
+            message: 'What is the employee email address?',
         },
         {
-            type: "input",
-            name: "officeNumber",
-            message: "What is the employee's office number?",
-        },
-    ])
+            type: 'input',
+            name: 'officeNumber',
+            message: 'What is the employee office number?',
+        }
+    ]
 };
-
-// FUNCTION > INITIALIZE PROGRAM
-function init() {
-    inquirer.prompt(promptManager)
-    .then(function(data) {
-        fs.writeFile("Employee-Dashboard.html", index(data));
-        console.log(data)
-    })
-}
-
-// FUNCTION > CALL TO INITIALIZE PROGRAM
-init();
