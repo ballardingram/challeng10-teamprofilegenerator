@@ -8,3 +8,21 @@ test('engineer objects >  test constructior values', () => {
     expect(engineer.email).toBe('bob@email.com');
     expect(engineer.github_username).toBe('github.com/bobtest');
 });
+
+// TEST DETAIL > This section will test the 'getObject' method.
+
+test('name object > test if getName method works', () => {
+    expect(engineer.getName()).toBe('Bob');
+});
+
+test('id object > test if getId method works', () => {
+    expect(engineer.getId()).toBe('123456789');
+});
+
+test('email object > test if getEmail method works', () => {
+    expect(engineer.getEmail()).toBe('bob@email.com');
+});
+
+test('github_username object > test if getGithub_username method works', () => {
+    expect(engineer.getGithub_username()).toBe('github.com/bobtest');
+});
