@@ -1,5 +1,7 @@
 function generateHTML(data) {
-    return ``
+    return `
+    
+    `
 };
 
 module.exports = generateHTML;
