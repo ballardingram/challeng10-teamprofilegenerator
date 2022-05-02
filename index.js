@@ -72,11 +72,24 @@ const groupQuestions = [{
         }
     ];
 
+// FUNCTION > MIGRATE DATA FROM PROMPTS INTO NEW FILE
+function writeFile(fileName, data) {
+    fs.writeFile(fileName, data, function(err) {
+        console.log(fileName)
+        console.log(data)
+        if (err) {
+            return console.log(err)
+        } else {
+            console.log("COMPLETE! New Team Dashboard READY! View the FILE EXPLORER to find your file!")
+        }
+    })
+}
+
 // FUNCTION > INITIALIZE PROGRAM
 function init() {
     inquirer.prompt(groupQuestions)
     .then(function(data) {
-        fs.writeFile("team-dashboard.html", generateHTML(data));
+        writeFile("team-dashboard.html", generateHTML(data));
         console.log(data)
     })
 }
