@@ -6,10 +6,10 @@ const fs = require('fs');
 const path = require("path");
 
 // ROUTES > CONNECTION TO OTHER JS FILES
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require("./lib/Intern");
-const generateHTML =require("./src/generateHTML.js");
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require("../lib/Intern");
+const generateHTML =require("./generateHTML");
 
 // ROUTES > OUTPUT FILE
 const OUTPUT_DIR = path.resolve(__dirname, "dist")
@@ -24,21 +24,64 @@ const promptManager = () => {
             type: 'input',
             name: 'name',
             message: 'What is the employee name?',
+            validate: nameInput => {
+                if(nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter the employees name. Example: Bob')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
             message: 'What is the employee ID?',
+            validate: idInput => {
+                if(idInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a new employee ID.')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
             message: 'What is the employee email address?',
+            validate: emailInput => {
+                if(emailInput) {
+                    return true;
+                } else {
+                    console.log('Please provide an employee email.')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'officeNumber',
             message: 'What is the employee office number?',
+            validate: officeNumberInput => {
+                if(officeNumberInput) {
+                    return true;
+                } else {
+                    console.log('Please provide an Office Phone Number.')
+                    return false;
+                }
+            }
         }
     ]
 };
+
+// FUNCTION > INITIALIZE PROGRAM
+function init() {
+    inquirer.prompt(promptManager)
+    .then(function(data) {
+        console.log(data)
+    })
+}
+
+// FUNCTION > CALL TO INITIALIZE PROGRAM
+init();
