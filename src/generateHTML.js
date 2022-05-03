@@ -2,7 +2,7 @@ const fs = require('fs');
 
 function generateHTML(data) {
     return `
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang ="en">
 
 <head>
@@ -52,6 +52,9 @@ function generateHTML(data) {
         <p class = "card-header-title">
             Manager Name Here
         </p>
+        <div class = "card>
+        <div class = "card-content">
+        <div class = "content">
         <span class = "icon">
             <i class="fa-solid fa-user-tie"></i>
         </span>
@@ -80,7 +83,6 @@ function generateHTML(data) {
 </div>
 </section>
 
-</body>
 <!-- DOCUMENTATION > FOOTER LINK (https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/) USED FOR OPEN IN NEW TAB AND SECURITY CONCERNS -->
 <footer class = "footer has-background-info has-text-white is-small">
     <div class = "content has-text-centered">
@@ -90,6 +92,8 @@ function generateHTML(data) {
         </p>
     </div>
 </footer>
+
+</body>
 
 <!-- LINKS TO EXTERNAL FEATURES -->
 <script src = "../index.js"></script>
