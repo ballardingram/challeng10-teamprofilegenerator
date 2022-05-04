@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function generateHTML(data) {
+function generateHTML(teamMembers) {
     return `
 <!DOCTYPE html>
 <html lang ="en">
@@ -50,7 +50,6 @@ function generateHTML(data) {
     <div class = "card column is-one-quarter">
         <header class = "card-header">
         <p class = "card-header-title">
-            Manager Name Here
         </p>
         <div class = "card>
         <div class = "card-content">
