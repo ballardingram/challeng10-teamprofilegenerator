@@ -1,23 +1,35 @@
-const inquirer = require("inquirer");
+// EXTERNAL PACKAGES > INQUIRER INSTALLED, FS DOES NOT REQUIRE INSTALL
+// DOCUMENTATION > INQUIRER (https://www.npmjs.com/package/inquirer)
+// DOCUMENTATION > FS (https://nodejs.dev/learn/the-nodejs-fs-module)
+const inquirer = require('inquirer');
+const fs = require('fs');
+const path = require("path");
 
-const newEmployee = [{
-    type: 'input',
-    name: 'name',
-    message: 'What is the employee name?'
-},
-{
-    type: 'input',
-    name: 'id',
-    message: 'What is the employee ID number?'
-},
-{
-    type: 'input',
-    name: 'email',
-    message: 'What is the employee email address?'
-}];
+// ROUTES > CONNECTION TO OTHER JS FILES
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require("./lib/Intern");
+const generateHTML =require("./src/generateHTML");
 
-function init() {
-    inquirer.prompt(newEmployee)
+class Employee {
+    constructor(name, id, email) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.role = role;
+    }
 }
-
-init();
+inquirer
+    .prompt({
+        type:'input',
+        name: 'name',
+        message: 'What is the employee name?',
+        validate: nameInput => {
+            if(nameInput) {
+                return true;
+            } else {
+                console.log('Please enter the employee name. Example: Bob')
+                return false;
+            }
+        }
+    })

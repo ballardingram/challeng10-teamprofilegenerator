@@ -21,7 +21,3 @@ test('id object > test if getId method works', () => {
 test('email object > test if getEmail method works', () => {
     expect(employee.getEmail()).toBe('bob@email.com');
 });
-
-test('role object > test if getRole method works', () => {
-    expect(employee.getRole()).toBe('Employee');
-});
