@@ -50,10 +50,8 @@ function generateHTML(teamMembers) {
     <div class = "card column is-one-quarter">
         <header class = "card-header">
         <p class = "card-header-title">
+        ${teamMembers.name}
         </p>
-        <div class = "card>
-        <div class = "card-content">
-        <div class = "content">
         <span class = "icon">
             <i class="fa-solid fa-user-tie"></i>
         </span>

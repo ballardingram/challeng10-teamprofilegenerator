@@ -140,9 +140,9 @@ function writeFile(fileName, data) {
 // FUNCTION > INITIALIZE PROGRAM
 function init() {
     inquirer.prompt(groupQuestions)
-    .then(function(data) {
-        writeFile("team-dashboard.html", generateHTML(data));
-        console.log(data)
+    .then(function(teamMembers) {
+        writeFile("team-dashboard.html", generateHTML(teamMembers));
+        console.log(teamMembers)
     })
 }
 
