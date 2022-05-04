@@ -35,50 +35,48 @@ function generateHTML(teamMembers) {
 
 <!-- DOCUMENTATION > BULMA FRAMEWORK SECTIONS (https://bulma.io/documentation/layout/section/) -->
 <!-- DOCUMENTATION > BULMA FRAMEWORK CARDS (https://bulma.io/documentation/components/card/) -->
-<section class = "section is-large">
-<div class = "columns is-multiline is-mobile">
-    <div class = "card column is-one-quarter">
-        <header class = "card-header">
-            <p class = "card-header-title">
-                Employee Name Here
-            </p>
-            <span class = "icon">
-                <i class="fa-solid fa-user-plus"></i>
-            </span>
-        </header>   
+<!-- DOCUMENTATION > MAILTO FUNCTION FOR EMAIL (https://www.w3docs.com/snippets/html/how-to-create-mailto-links.html) -->
+<section class = "section is-medium">
+    <div class = "columns is-multiliune is-mobile">
+        <div class = "card is-warning ">
+            <header class = "card-header">
+                <p class = "card-header-title">
+                    ${teamMembers.name}
+                </p>
+            </header>
+            <div class = "card-content">
+                <span class = "icon-text">
+                    <span class = "icon">
+                        <i class = "fa-solid fa-user"></i>
+                    </span>
+                    <span><em>${teamMembers.role}</strong></span>
+                </span>
+                <br>
+                <span class = "icon-text">
+                    <span class = "icon">
+                        <i class = "fas fa-info-circle"></i>
+                    </span>
+                    <span><strong>ID: </strong>${teamMembers.id}</span>
+                </span>
+                <br>
+                <span class = "icon-text">
+                    <span class = "icon">
+                        <i class = "fa-solid fa-paper-plane"></i>
+                    </span>
+                    <span><strong>Email: </strong><a href = "mailto:${teamMembers.email}">${teamMembers.email}</a></span>
+                </span>
+                <br>
+                <span class = "icon-text">
+                    <span class = "icon">
+                        <i class = "fa-solid fa-phone"></i>
+                    </span>
+                    <span><strong>Office Phone: </strong>${teamMembers.officeNumber}</span>
+                </span> 
+            </div>
+        </div>
     </div>
-    <div class = "card column is-one-quarter">
-        <header class = "card-header">
-        <p class = "card-header-title">
-        ${teamMembers.name}
-        </p>
-        <span class = "icon">
-            <i class="fa-solid fa-user-tie"></i>
-        </span>
-    </header>
-    </div>
-    <div class = "card column is-one-quarter">
-        <header class = "card-header">
-            <p class = "card-header-title">
-                Engineer Name Here
-            </p>
-            <span class = "icon">
-                <i class="fa-solid fa-user-gear"></i> 
-            </span>
-        </header>
-    </div>
-    <div class = "card column is-one-quarter">
-        <header class = "card-header">
-            <p class = "card-header-title">
-                Intern Name here
-            </p>
-            <span class = "icon">
-                <i class="fa-solid fa-user-graduate"></i> 
-            </span>
-        </header>
-    </div>
-</div>
 </section>
+
 
 <!-- DOCUMENTATION > FOOTER LINK (https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/) USED FOR OPEN IN NEW TAB AND SECURITY CONCERNS -->
 <footer class = "footer has-background-info has-text-white is-small">

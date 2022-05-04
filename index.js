@@ -24,7 +24,7 @@ const teamMembers = [];
 // DOCUMENTATION > NPM INQUIRER 'RECURSIVE PROMPTS' (https://www.npmjs.com/package/inquirer-recursive)
 // DOCUMENTATION > NPM INQUIRER 'LOOPING PROMPTS' (http://www.penandpaperprogrammer.com/blog/2018/12/16/repeating-questions-with-inquirerjs)
 // DOCUMENTATION > 'LOOPING PROMPTS' DIDN'T WORK WITH THE CODE I HAVE, NOT USING FOR NOW
-inquirer.registerPrompt('recursive', require('inquirer-recursive'));
+// NOTE > PER TUTOR, REMOVE THIS inquirer.registerPrompt('recursive', require('inquirer-recursive'));
 const groupQuestions = [{
             type: 'input',
             name: 'name',
@@ -78,57 +78,19 @@ const groupQuestions = [{
             }
         },
         {
-            type: 'recursive',
-            name: 'addEngineer',
-            message: 'Are you adding an Engineer?',
-            prompts: [
-                {
-                    type: 'input',
-                    name: 'Github_username',
-                    message: 'What is the Enginner GitHub User Name?',
-                    validate: Github_username => {
-                        if(Github_username) {
-                            return true;
-                        } else {
-                            console.log('Github User Name is required. Example: github.com/bobtest')
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            type: 'recursive',
-            name: 'addIntern',
-            message: 'Are you adding an Intern?',
-            prompts: [
-                {
-                    type: 'input',
-                    name: 'school',
-                    message: 'What is the name of the school the Intern is/did attend?',
-                    validate: school => {
-                        if(school) {
-                            return true;
-                        } else {
-                            console.log('Please provide the name of the school.')
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            type: 'recursive',
-            name: 'returnHome',
-            message: 'Enter a new employee?'
+            type: 'checkbox',
+            name: 'role',
+            message: 'What is the employee role?',
+            choices: ['Engineer', 'Intern', 'Manager']
         }
     ];
 
 
 // FUNCTION > MIGRATE DATA FROM PROMPTS INTO NEW FILE
 // NOTE > This function and the functions below were referenced from Challenge 9. My take was "if it works then use it again and modify it for this challenge."
-function writeFile(fileName, data) {
-    fs.writeFile(fileName, data, function(err) {
+function writeFile(fileName, teamMembers) {
+    fs.writeFile(fileName, teamMembers, function(err) {
         console.log(fileName)
-        console.log(data)
         if (err) {
             return console.log(err)
         } else {
