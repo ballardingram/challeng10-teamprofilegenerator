@@ -100,18 +100,14 @@ function writeFile(fileName, groupQuestions) {
 }
 
 // FUNCTION > INITIALIZE PROGRAM
-function init() {
-    inquirer.prompt(groupQuestions)
-    .then(function(groupQuestions) {
-        writeFile("team-dashboard.html", generateHTML(groupQuestions));
-        console.log(options)
-    })
-}
-
-const main = async () => {
-    const options = await groupQuestions();
-    console.log(options)
+const init = async () => {
+    const options = await groupQuestions()
+    return createTeam();
 };
 
-// FUNCTION > CALL TO INITIALIZE PROGRAM
-main();
+init();
+
+function createTeam () {
+    console.log(options)
+    fs.writeFileSync("./output/new-team-dashboard.html", generateHTML(groupQuestions));
+}
