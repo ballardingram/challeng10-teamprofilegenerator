@@ -20,19 +20,53 @@ const groupQuestions = async () => {
             type: 'input',
             name: 'name',
             message: 'What is the employee name?',
-            default: 'Example: Bob'
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('REQUIRED! Example: Bob')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
             message: 'What is the employee ID number?',
-            default: 'Example: 123456789'  
+            validate: idInput => {
+                if (idInput) {
+                    return true;
+                } else {
+                    console.log('REQUIRED! Example: 123456789')
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the employee email?',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('REQUIRED! Example: bob@email.com')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'officeNumber',
             message: 'What is the Manager office number?',
-            default: 'Example: 512-512-5112'
+            validate: officeNumberInput => {
+                if (officeNumberInput) {
+                    return true;
+                } else {
+                    console.log('REQUIRED! Example: 512-512-5112')
+                    return false;
+                }
+            }
         },
         {
             type: 'list',
@@ -48,7 +82,15 @@ const groupQuestions = async () => {
             {
                 type: 'input',
                 name: 'github',
-                message: 'What is the Engineer GitHub user name?'
+                message: 'What is the Engineer GitHub user name?',
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log('REQUIRED! Example: bobtest')
+                        return false;
+                    }
+                }
             },
         ])
         const newEngineer = new Engineer(
@@ -65,7 +107,15 @@ const groupQuestions = async () => {
             {
                 type: 'input',
                 name: 'school',
-                message: 'What is the name of the School/Unversity for the Intern?'
+                message: 'What is the name of the School/Unversity for the Intern?',
+                validate: schoolInput  => {
+                    if (schoolInput) {
+                        return true;
+                    } else {
+                        console.log('REQUIRED! Example: UT Austin')
+                        return false;
+                    }
+                }
             },
         ])
         const newIntern = new Intern(
