@@ -1,54 +1,62 @@
 // FUNCTIONS > BUILD TEAM
 // NESTED FUNCTIONS > NEW ENGINNER AND NEW INTERN
-
-const Engineer = require("../lib/Engineer")
-
 // DOCUMENTATION > NESTED FUNCTIONS (https://www.educba.com/javascript-nested-functions/)
 const buildTeam = (group) => {
+    const addManager = (Manager) => {
+        return `
+        ${Manager.name}<br>
+        ${Manager.id}<br>
+        ${Manager.email}<br>
+        ${Manager.officeNumber}<br>
+        `;
+    };
     const addEngineer = (Engineer) => {
         return `
-        <div class = "card is-warning ">
         <header class = "card-header">
-            <p class = "card-header-title">
-                ${Engineer.name}
-            </p>
-        </header>
-        <div class = "card-content">
-            <span class = "icon-text">
-                <span class = "icon">
-                    <i class = "fa-solid fa-user"></i>
-                </span>
-                <span><em>${Engineer.role}</strong></span>
+        <p class = "card-header-title">
+            ${Engineer.name}
+        </p>
+    </header>
+    <div class = "card-content">
+        <span class = "icon-text">
+            <span class = "icon">
+                <i class = "fa-solid fa-user"></i>
             </span>
-            <br>
-            <span class = "icon-text">
-                <span class = "icon">
-                    <i class = "fas fa-info-circle"></i>
-                </span>
-                <span><strong>ID: </strong>${Engineer.id}</span>
+            <span><em>${Engineer.role}</strong></span>
+        </span>
+        <br>
+        <span class = "icon-text">
+            <span class = "icon">
+                <i class = "fas fa-info-circle"></i>
             </span>
-            <br>
-            <span class = "icon-text">
-                <span class = "icon">
-                    <i class = "fa-solid fa-paper-plane"></i>
-                </span>
-                <span><strong>Email: </strong><a href = "mailto:${Engineer.email}">${Engineer.email}</a></span>
+            <span><strong>ID: </strong>${Engineer.id}</span>
+        </span>
+        <br>
+        <span class = "icon-text">
+            <span class = "icon">
+                <i class = "fa-solid fa-paper-plane"></i>
             </span>
-            <br>
-            <span class = "icon-text">
-                <span class = "icon">
-                    <i class = "fa-solid fa-phone"></i>
-                </span>
-                <span><strong>Office Phone: </strong>${Engineer.officeNumber}</span>
+            <span><strong>Email: </strong><a href = "mailto:${Engineer.email}">${Engineer.email}</a></span>
+        </span>
+        <br>
+        <span class = "icon-text">
+            <span class = "icon">
+                <i class = "fa-solid fa-phone"></i>
             </span>
-        </div>
+            <span><strong>Office Phone: </strong>${Engineer.officeNumber}</span>
+        </span>
+        <br>
+        <span class = "icon-text">
+            <span class = "icon">
+                <i class = "fa-solid fa-phone"></i>
+            </span>
+            <span><strong>GitHub: </strong><a href = "https://github.com/${Engineer.github}">${Engineer.github}</a>
     </div>
         `;
     };
 
     const addIntern = (Intern) => {
         return `
-        <div class = "card is-warning ">
         <header class = "card-header">
             <p class = "card-header-title">
                 ${Intern.name}
@@ -82,23 +90,34 @@ const buildTeam = (group) => {
                 </span>
                 <span><strong>Office Phone: </strong>${Intern.officeNumber}</span>
             </span>
+            <br>
+            <span class = "icon-text">
+                <span class = "icon>
+                    <i class = "fa-solid fa-school></i>
+                </span>
+                <span><strong>School: </strong>${Intern.school}</span>
         </div>
-    </div>
-        `
-    }
-    const site = [];
+        `;
+    };
+const site = [];
 
 site.push(
     group
-    .filter((employee) => employee.getRole() === 'Engineer')
+    .filter((employee) => employee.getRole() === "Manager")
+    .map((Manager) => addManager(Manager))
+);
+
+site.push(
+    group
+    .filter((employee) => employee.getRole() === "Engineer")
     .map((Engineer) => addEngineer(Engineer))
     .join("")
 );
 
 site.push(
     group
-    .filter((employee) => employee.getRole() === 'Intern')
-    .map((Intern) => addEngineer(Intern))
+    .filter((employee) => employee.getRole() === "Intern")
+    .map((Intern) => addIntern(Intern))
     .join("")
 );
 
@@ -116,6 +135,7 @@ module.exports = (group) => {
     <meta charset = "UTF-8"/>
     <meta http-equiv="viewport" content="width=device-width, initial-scale=1"/>
     <title> Team Dashboard</title>
+
     <!-- LINKS TO EXTERNAL FEATURES -->
     <!-- DOCUMENTATION > FONTAWESOME (https://fontawesome.com/kits/a31af345b8/use) MY KIT ASSOCIATED WITH MY ACCOUNT -->
     <!-- DOCUMENTATION > BULMA FRAMEWORK FOR CSS LINK (https://bulma.io/documentation/overview/start/) -->
@@ -123,6 +143,7 @@ module.exports = (group) => {
     <script src="https://kit.fontawesome.com/a31af345b8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
+
 <body>
 <!-- DOCUMENTATION > BULMA FRAMEWORK (https://bulma.io/documentation/overview/start/) USED STARTER CODE AS A REFERENCE -->
 <!-- DOCUMENTATION > BULMA FRAMEWORK (https://bulma.io/documentation/columns/sizes/) -->
@@ -132,11 +153,24 @@ module.exports = (group) => {
     <h1 class = "title is-1 has-text-white">Employee Dashboard</h1>
     </div>
 </header>
+
 <!-- DOCUMENTATION > BULMA FRAMEWORK SECTIONS (https://bulma.io/documentation/layout/section/) -->
 <!-- DOCUMENTATION > BULMA FRAMEWORK CARDS (https://bulma.io/documentation/components/card/) -->
 <!-- DOCUMENTATION > MAILTO FUNCTION FOR EMAIL (https://www.w3docs.com/snippets/html/how-to-create-mailto-links.html) -->
 <section class = "section is-medium">
-    <div class = "columns is-multiliune is-mobile">
-    ${buildTeam(group)}
+${buildTeam(group)}
+</section>
+
+<!-- DOCUMENTATION > FOOTER LINK (https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/) USED FOR OPEN IN NEW TAB AND SECURITY CONCERNS -->
+<footer class = "footer has-background-info has-text-white is-small">
+    <div class = "content has-text-centered">
+        <p>
+            <em>This was built by Ballard Ingram for UT Full Stack Boot Camp Challenge #10!</em>
+            <br><a href="https://github.com/ballardingram/challenge10-teamprofilegenerator" class = "has-text-white" target="_blank" rel="noopener noreferrer">Access the GitHub Repo by clicking here.</a>
+        </p>
+    </div>
+</footer>
+</body>
+</html>
     `
 };
