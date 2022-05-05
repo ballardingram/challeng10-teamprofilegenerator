@@ -16,7 +16,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "dist")
 const outputPath = path.join(OUTPUT_DIR, "team-dashboard.html");
 
 // ARRAY > TEAM MEMBERS
-const teamMembers = [];
+const groupQuestions = async (options = []) =>{
 
 // PROMPTS > EMPLOYEE QUESTIONS - ALL PROFILES START WITH THIS INFORMATION
 // DOCUMENTATION > NODE INQUIRER - ANSWERS (https://www.npmjs.com/package/inquirer#answers)
@@ -25,71 +25,71 @@ const teamMembers = [];
 // DOCUMENTATION > NPM INQUIRER 'LOOPING PROMPTS' (http://www.penandpaperprogrammer.com/blog/2018/12/16/repeating-questions-with-inquirerjs)
 // DOCUMENTATION > 'LOOPING PROMPTS' DIDN'T WORK WITH THE CODE I HAVE, NOT USING FOR NOW
 // NOTE > PER TUTOR, REMOVE THIS inquirer.registerPrompt('recursive', require('inquirer-recursive'));
-const groupQuestions = [{
-            type: 'input',
-            name: 'name',
-            message: 'What is the employee name?',
-            validate: nameInput => {
-                if(nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter the employees name. Example: Bob')
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'What is the employee ID?',
-            validate: idInput => {
-                if(idInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a new employee ID.')
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is the employee email address?',
-            validate: emailInput => {
-                if(emailInput) {
-                    return true;
-                } else {
-                    console.log('Please provide an employee email.')
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: 'What is the Manager office number?',
-            validate: officeNumber => {
-                if(officeNumber) {
-                    return true;
-                } else {
-                    console.log('Please enter the Managers office number.')
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'checkbox',
-            name: 'role',
-            message: 'What is the employee role?',
-            choices: ['Engineer', 'Intern', 'Manager']
-        }
-    ];
+// DOCUMENTATION > NPM WHEN (https://github.com/SBoudrias/Inquirer.js/blob/master/packages/inquirer/examples/when.js)
+const addEmployee = [{
+    type: 'input',
+    name: 'name',
+    message: 'What is the employee name?',
+    default: 'Example: Bob'
+},
+{
+    type: 'input',
+    name: 'id',
+    message: 'What is the employee ID number?',
+    default: 'Example: 123456789'
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'What is the employee email?',
+    default: 'Example: bob@email.com'
+},
+{
+    type: 'input',
+    name: 'officeNumber',
+    message: 'What is the Manager office number?',
+    default: 'Example: 512-512-5112'
+},
+{
+    type: 'list',
+    name: 'role',
+    message: 'Add an employee by selecting an option below:',
+    choices: ['Engineer', 'Intern']
+},
+{
+    type:'input',
+    name: 'github',
+    message: 'What is the Engineer GitHub user name?',
+    when(answers) {
+        return answers.role === 'Engineer'
+    }
+},
+{
+    type: 'input',
+    name: 'school',
+    message: 'What is the name of the School/University for the Intern?',
+    when(answers) {
+        return answers.role === 'Intern'
+    }
+},
+{
+    type: 'confirm',
+    name: 'repeat',
+    message: 'Enter another employee?',
+    default: true
+}
+];
+
+const { repeat, ...answers } = await inquirer.prompt(addEmployee);
+const newEmployee = [...options, answers];
+return repeat ? groupQuestions(newEmployee) : newEmployee;
+};
 
 
 // FUNCTION > MIGRATE DATA FROM PROMPTS INTO NEW FILE
 // NOTE > This function and the functions below were referenced from Challenge 9. My take was "if it works then use it again and modify it for this challenge."
-function writeFile(fileName, teamMembers) {
-    fs.writeFile(fileName, teamMembers, function(err) {
+function writeFile(fileName, groupQuestions) {
+    fs.writeFile(fileName, groupQuestions, function(err) {
         console.log(fileName)
         if (err) {
             return console.log(err)
@@ -102,11 +102,16 @@ function writeFile(fileName, teamMembers) {
 // FUNCTION > INITIALIZE PROGRAM
 function init() {
     inquirer.prompt(groupQuestions)
-    .then(function(teamMembers) {
-        writeFile("team-dashboard.html", generateHTML(teamMembers));
-        console.log(teamMembers)
+    .then(function(groupQuestions) {
+        writeFile("team-dashboard.html", generateHTML(groupQuestions));
+        console.log(options)
     })
 }
 
+const main = async () => {
+    const options = await groupQuestions();
+    console.log(options)
+};
+
 // FUNCTION > CALL TO INITIALIZE PROGRAM
-init();
+main();

@@ -96,22 +96,32 @@
                     <span class = "icon">
                         <i class = "fas fa-info-circle"></i>
                     </span>
-                    <span><strong>ID: ${teamMembers.id}</strong></span>
+                    <span><strong>ID: </strong>${teamMembers.id}</span>
                 </span>
                 <br>
                 <span class = "icon-text">
                     <span class = "icon">
                         <i class = "fa-solid fa-paper-plane"></i>
                     </span>
-                    <span><strong>Email: ${teamMembers.email}</strong></span>
+                    <span><strong>Email: </strong><a href = "mailto:${teamMembers.email}">${teamMembers.email}</a></span>
                 </span>
                 <br>
                 <span class = "icon-text">
                     <span class = "icon">
                         <i class = "fa-solid fa-phone"></i>
                     </span>
-                    <span><strong>Office Phone: ${teamMembers.officeNumber}</strong></span>
+                    <span><strong>Office Phone: </strong>${teamMembers.officeNumber}</span>
                 </span> 
+                <%
+                if(teamMembers.github === true) {%>
+                <br>
+                <span class = "icon-text">
+                    <span class = "icon">
+                        <i class = "fa-solid fa-globe"></i>
+                    </span>
+                    <span><strong>GitHub: </strong>${teamMembers.github}</span>
+                </span>
+                    <% } %>
             </div>
         </div>
     </div>

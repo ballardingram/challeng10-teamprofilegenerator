@@ -71,7 +71,7 @@ function generateHTML(teamMembers) {
                         <i class = "fa-solid fa-phone"></i>
                     </span>
                     <span><strong>Office Phone: </strong>${teamMembers.officeNumber}</span>
-                </span> 
+                </span>
             </div>
         </div>
     </div>
